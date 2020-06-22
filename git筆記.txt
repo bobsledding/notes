@@ -42,3 +42,5 @@ Git workflow
 3. 建新的branch，寫你要新增的東西。
 4. 寫完後，把你的branch push給remote
 5. ???是哪邊要把branch刪掉嗎?
+==================
+pull = fetch + merge
