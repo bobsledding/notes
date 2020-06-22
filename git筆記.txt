@@ -1,0 +1,44 @@
+git init
+git status
+git add filename
+git diff filename
+git commit -m "-m後接訊息"
+git log
+
+==github==
+setting username、email、HTTPS/SSH
+=====
+git checkout HEAD filename
+git add filename_1 filename_2 ......
+git reset HEAD filename => unstage file
+git reset sha
+git checkout -- filename (--效果等於HEAD)
+
+git reset 有--mixed(預設，退回到該commit的add之前(unstaged))、--hard(退回到該commit，檔案一起變)、--soft(僅退回到add之後commit之前，只是HEAD移動而已)
+====
+git branch ※列出branches
+git branch new_branch ※創branch
+git checkout branch_name ※換branch
+git merge branck_name
+merge conflict 發生後，修正conflict發生的檔案，把檔案內的git標記清掉，然後再commit。-m稍微講一下
+git branch -d branch_name ※刪branch
+git branch -D branch_name ※大寫D用來刪沒merge過的branch
+==========
+git clone remote_location clone_name
+git remote -v 列出remote(會遇到多remotes的狀況嗎?)
+git fetch
+===git workflow===
+1. Fetch and merge changes from the remote
+2. Create a branch to work on a new project feature
+3. Develop the feature on your branch and commit your work
+4. Fetch and merge from the remote again (in case new commits were made while you were working)
+5. Push your branch up to the remote for review
+===================
+git push origin your_branch_name
+==================
+Git workflow
+1. 先clone remote
+2. 如以clone過，fetch在remote上新的commits
+3. 建新的branch，寫你要新增的東西。
+4. 寫完後，把你的branch push給remote
+5. ???是哪邊要把branch刪掉嗎?

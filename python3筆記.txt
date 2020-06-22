@@ -1,0 +1,29 @@
+print("Hello and welcome " + my_name + "!")
+變數宣告整數就是int 宣告有小數點就是float
+python3遇到除法會自動轉成float
+print(2 ** 10) # 1024
+
+multi_line_string = """
+multiple lines
+of strings
+here.
+"""
+
+input("user input something? ")
+
+def function_name():
+  some code
+
+Keyword Arguments:
+call function時，可以直接(parameter_b="value_b", parameter_a="value_a")
+直接叫參數名就可以對應到該參數
+
+Multiple Return Values:
+return x_2, y_2
+x, y = the_function()
+
+if a > b:
+elif a < b:
+else:
+
+python有!=，可是不能直接!(True/False)，要用not
