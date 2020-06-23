@@ -27,3 +27,8 @@ elif a < b:
 else:
 
 python有!=，可是不能直接!(True/False)，要用not
+
+try:
+    # some statement
+except ErrorName:
+    # some statement
