@@ -1,0 +1,12 @@
+$ python manage.py createsuperuser
+$ python manage.py migrate
+(project)/settings.py:TIME_ZONE
+$ python manage.py startapp (app)
+settings.py INSTALLED_APPS加入APP
+$ python manage.py makemigrations polls
+$ python manage.py migrate
+admin site:
+	在apps.py設定verbose_name
+	在admin.py設定verbose_name
+	在models.py設定verbose_name
+==延後:設備多選的部分
