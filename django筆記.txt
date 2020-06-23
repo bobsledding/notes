@@ -10,3 +10,6 @@ admin site:
 	在admin.py設定verbose_name
 	在models.py設定verbose_name
 ==延後:設備多選的部分
+pip install -r requirements.txt
+pip3 install — upgrade pip
+python -m virtualenv venv
