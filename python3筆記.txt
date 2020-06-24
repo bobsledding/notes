@@ -32,3 +32,25 @@ try:
     # some statement
 except ErrorName:
     # some statement
+=======
+LIST
+the_list.append(value)
+the_list + another_list = combined_list
+range(3) = [0, 1, 2]
+range(2, 4) = [2, 3]
+range(0, 10, 3) = [0, 3, 6, 9]
+range要print的話要轉list
+zip(list1, list2) # [(list1_a, list2_a), (list1_b, list2_b)]
+
+len(the_list)
+the_list[-1] # 最後一個element
+letters[1:3] # ['b', 'c']
+letters[:3] # ['a', 'b', 'c']
+letters[24:] # ['y', 'z']
+letters[-2:] # ['y', 'z']
+the_list(sort)
+sorted(the_list) # 創一個新的list
+
+list # [a, b, c]
+tuple # (a, b, c) 不可變
+dict # {'key':'value'}
