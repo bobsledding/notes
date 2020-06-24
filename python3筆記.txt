@@ -54,3 +54,15 @@ sorted(the_list) # 創一個新的list
 list # [a, b, c]
 tuple # (a, b, c) 不可變
 dict # {'key':'value'}
+======
+LOOP
+for element in the_list:
+for i in range(3):
+continue # 跳過一個element
+while expression:
+======
+List Comprehensions
+usernames = [word for word in words if word[0] == '@']
+"""
+第一個word可以做一些處理、運算
+"""
