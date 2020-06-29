@@ -7,6 +7,10 @@ git log
 
 ==github==
 setting username、email、HTTPS/SSH
+$ git config --global user.name "Your Real Name"
+$ git config --global user.email "you@email.com"
+git clone https://github.com/GitHub_nick/django.git
+
 =====
 git checkout HEAD filename
 git add filename_1 filename_2 ......
