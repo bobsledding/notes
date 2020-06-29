@@ -13,3 +13,5 @@ admin site:
 pip install -r requirements.txt
 pip3 install — upgrade pip
 python -m virtualenv venv
+$ django-admin startproject mysite
+$ python manage.py runserver
