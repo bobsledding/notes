@@ -1,0 +1,15 @@
+●開始前:
+	。git clone或git pull
+	。如果有新的package，
+		$ pip install -r requirements.txt
+	。要開feature branch的話，
+		$ git branch new_branch_name
+
+●結束前:
+	。有安裝新的package的話
+		$ pip freeze > requirements.txt
+	。$ git add	# 我想還是不要省事全add，稍微看一下modified哪些。
+	。$ git commit -m "寫詳細一點"
+	。看要不要push branch
+		$ git push origin branch_name
+	。上github去merge

@@ -48,3 +48,8 @@ Git workflow
 5. ???是哪邊要把branch刪掉嗎?
 ==================
 pull = fetch + merge
+==================
+中文檔名問題
+$ git config --global core.quotepath false
+在CMD裡面的話
+set LC_ALL=C.UTF-8
