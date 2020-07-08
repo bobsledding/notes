@@ -43,4 +43,4 @@ context_processor:
 signal:
 model object有生命週期，可以綁signal觸發事件。
 ===
-在template可以用widthratio實現乘法
+在template可以用widthratio實現乘除法
