@@ -21,3 +21,26 @@ settings.py的'DIRS': [os.path.join(BASE_DIR, 'templates')],
 {% load static %}
 {% extends "base.html" %}
 {% block name %}default_contents{% endblock %}
+
+要用上傳圖片的話:
+FileField
+在settings.py設定 MEDIA_ROOT 和 MEDIA_URL
+要能秀圖片要改urls.py不然會404
+請參照我的settings.py 還有 urls.py
+讓檔案刪除時實際也跟著刪除: 在model加上receiver
+
+py manage.py shell
+
+在urls.py import django.urls.include
+
+path('app_name/', include('app_name.urls')),
+我硬改了scrolltotop的圖片路徑= =
+在輸出{{ text }}的時候改為{{ text|linebreaks }}可以正常換行
+===
+context_processor:
+想要在載入template時預先載入一些變數，可以用context_processor
+===
+signal:
+model object有生命週期，可以綁signal觸發事件。
+===
+在template可以用widthratio實現乘法
