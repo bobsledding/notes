@@ -23,7 +23,7 @@ git reset 有--mixed(預設，退回到該commit的add之前(unstaged))、--hard
 git branch ※列出branches
 git branch new_branch ※創branch
 git checkout branch_name ※換branch
-git merge branck_name
+git merge branch_name
 merge conflict 發生後，修正conflict發生的檔案，把檔案內的git標記清掉，然後再commit。-m稍微講一下
 git branch -d branch_name ※刪branch
 git branch -D branch_name ※大寫D用來刪沒merge過的branch

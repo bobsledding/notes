@@ -44,3 +44,9 @@ signal:
 model object有生命週期，可以綁signal觸發事件。
 ===
 在template可以用widthratio實現乘除法
+或是把需要的乘除法或是range()寫在model裡
+===
+deploy前記得到settings.py設定ALLOWED_HOSTS
+===
+request.GET和request.POST是querydict型態
+要做一些操作的話記得轉list或dict：request.POST.dict()
