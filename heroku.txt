@@ -1,0 +1,12 @@
+heroku run python3 portfolio_cart/manage.py migrate
+heroku run python3 portfolio_cart/manage.py loaddata 2020_07_23_first.json
+heroku run unzip portfolio_cart/media/2020_07_23_first_product_images.zip -d ./portfolio_cart/media
+
+heroku auth:login
+heroku create
+heroku create app_name
+heroku git:remote -a app_name
+heroku config:set DJANGO_SETTINGS_MODULE=mysite.production_settings
+git push heroku 我正在寫的branch:master
+heroku ps:scale web=1
+heroku addons:open newrelic
