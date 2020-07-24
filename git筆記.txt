@@ -53,3 +53,6 @@ pull = fetch + merge
 $ git config --global core.quotepath false
 在CMD裡面的話
 set LC_ALL=C.UTF-8
+=================
+將local的branch A push到remote的branch B:
+git push (remote) A:B
