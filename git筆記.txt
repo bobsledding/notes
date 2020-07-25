@@ -56,3 +56,9 @@ set LC_ALL=C.UTF-8
 =================
 將local的branch A push到remote的branch B:
 git push (remote) A:B
+=================
+create branch and checkout
+git checkout -b branch_name
+=================
+可以刪除一個檔案全部的history
+詳情請google

@@ -1,4 +1,0 @@
-new app
-寫model
-migrate
-寫測試
