@@ -6,7 +6,28 @@ function fName(&$parameter)
 ===常用built-in function===
 gettype()
 var_dump()
+strrev() // reverse string
+strtolower()
+str_repeat("hi", 10)
+substr_count($story, "like")
+abs()
+round()
+rand(), rand(1,100)
+getrandmax()
+str_pad(string $input, int $pad_length[, string $pad_string = " "[, int $pad_type = STR_PAD_RIGHT ]]) : string
 
+===array===
+array() // []
+count()
+print_r()
+implode($glue, $array)
+$arr[] = "append elements"
+array_pop($arr) // return & remove last.
+array_push($arr, "elements") // add to last, return count()
+array_shift($arr) // return & remove first.
+array_unshift($arr, "elements") // add to first, return count()
+unset($nums["one"]);
+array + array != array_merge
 ===PSR===
 example.php
 <?php
