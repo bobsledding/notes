@@ -1,0 +1,107 @@
+===function===
+傳入reference:
+function fName(&$parameter)
+{
+}
+===常用built-in function===
+gettype()
+var_dump()
+
+===PSR===
+example.php
+<?php
+
+namespace MustEmptyLineUnderNamespace;
+
+use MustUnderNamespace;
+use MustEmptyLineUnderUse;
+use App\Gg;
+
+class ClassNamesLikeThis extends MustBeSameLine implements
+    OneImplementOneLine,
+    IfHasMultipleImplements
+{
+    const CONSTANTS_LIKE_THIS;
+    abstract public $_key_words_must_lower = "true, false, null, ifelseforwhilebreakcontinue...";
+    finalprivate $must_declare_scope = "and don't var"
+    protected static $one_property_one_line = "fuck"
+
+    public function functionNamesLikeThis($par1, &$par2, $par3 = 'gg')
+    {
+        if ($par1 == 'gg') {
+            echo 'so long';
+        } elseif ($par1 == '69') {
+            echo 'yeah';
+        } else {
+            echo 'wtf';
+        }
+    }
+    
+    private function multipleLine(
+        int $just,
+        $like,
+        $this = '下面)和{中間要一個空格'
+    ) {
+    }
+
+    final public static function visibilityExample()
+    {
+    }
+
+    $call_like_this = new Gg();
+
+    $call_like_this->noSpaceBetween($param, $like, $this);
+
+    $call_like_this->multiArgs(
+        $multi_line,
+        $like,
+        $this,
+    );
+    switch ($expr) {
+        
+        case 0:
+            echo '有break就break(或return)';
+            break;
+        case 1:
+            echo '不空也不break記得註解';
+            // no break
+        case 2:
+        case 3:
+        default:
+            echo 'default'
+            break;
+    }
+    while ($expr) {
+        // while body
+    }
+    do {
+        // do while body
+    } while ($expr);
+    for ($i = 0; $i < 10; $i++) {
+        // for body
+    }
+    foreach ($literable as $key => $value) {
+        // foreach body
+    }
+    try {
+        // try body
+    } catch (FirstExceptionType $e) {
+        // catch body
+    } catch (OtherExceptionType $e) {
+        // catch body
+    }
+    $long_args_and_vars = function (
+        $arg_line1,
+        $arg_line2,
+        $arg_line3
+    ) use (
+        $var1,
+        $var2
+    ) {
+        // closure body
+    };
+}
+//class, namespace, autoload等等的要再研究一下
+//最後要空一行
+
+======
