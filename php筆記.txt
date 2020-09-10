@@ -15,6 +15,7 @@ round()
 rand(), rand(1,100)
 getrandmax()
 str_pad(string $input, int $pad_length[, string $pad_string = " "[, int $pad_type = STR_PAD_RIGHT ]]) : string
+readline()
 
 ===array===
 array() // []
@@ -28,6 +29,29 @@ array_shift($arr) // return & remove first.
 array_unshift($arr, "elements") // add to first, return count()
 unset($nums["one"]);
 array + array != array_merge
+
+===Conditional Statements===
+if () {} elseif () {} else {}
+switch ($s) {case 'a': break; default:}
+do ... while ... 結尾要分號;
+do ... while ... 至少會執行一次。
+======
+include "*.php";
+在html中，可用 for(;;): endfor;
+同上，有endwhile; endforeach;
+直接echo: <?= string ?>
+
+===REGEX===
+太麻煩就不寫了
+preg_match(
+preg_replace(
+
+==html相關===
+trim()
+htmlspecialchars()
+filter_var() <== 要研究
+header()
+
 ===PSR===
 example.php
 <?php
