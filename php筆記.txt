@@ -52,6 +52,18 @@ htmlspecialchars()
 filter_var() <== 要研究
 header()
 
+===class相關===
+class B extends A
+{
+    public $gg = "big";
+    public static $pp = "small";
+    public __construct(){}
+}
+wtf = new B();
+B::$pp;
+wft->gg;
+overload
+override
 ===PSR===
 example.php
 <?php
