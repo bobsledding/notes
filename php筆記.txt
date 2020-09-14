@@ -162,3 +162,4 @@ class ClassNamesLikeThis extends MustBeSameLine implements
 //最後要空一行
 
 ======
+Late Static Bindings

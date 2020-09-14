@@ -1,0 +1,2 @@
+db重build記得清volume，幹！
+有些image只會執行一次，所以才會一直restarting(像php-cli)
