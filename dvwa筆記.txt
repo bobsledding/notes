@@ -1,0 +1,105 @@
+●Brute Force
+==Low
+	多了mysql_escape_string
+	sleep(2) // 登入失敗時
+==Medium
+	多了stripslashes
+	sleep(2) => sleep(rand(0,3))
+	generateSessionToken & checkToken
+==High
+	GET => POST
+	增加登入錯誤次數時間限制
+==Impossible
+	這種方法會害正常user無法登入吧
+
+
+●Command Injection
+==Low
+	用str_replace濾掉&&和;
+==Medium
+	用trim濾input
+	濾掉更多字元&,;,| ,-,$,(,),`,||
+==High
+	驗token
+	驗ip(input)格式
+	stripslashes
+==Impossible
+
+
+●CSRF
+==Low
+	檢查referer
+==Medium
+	檢查token
+==High
+	stripslashes
+	prepare/bind
+	檢查是否真有資料?
+==Impossible
+	直到最後都是$_GET...?
+
+
+●File Inclusion
+==Low
+	濾掉http://, https://, ../, ..\
+==Medium
+	驗input格式
+	檢查allow_url_include & allow_url_fopen開了沒
+==High
+	直接列白名單
+==Impossible
+
+
+●File Upload
+==Low
+	檢查$_FILES檔案類型、大小
+==Medium
+	檔案類型改驗副檔名
+	大小改驗getimagesize(tmp)
+==High
+	驗token
+	檔案類型+副檔名都驗
+	檔名轉換
+	圖片re-encode去掉metadata
+	用rename取代move_uploaded_file
+==Impossible
+
+
+●Insecure CAPTCHA
+==Low
+	把recaptha的結果丟到下一階段檢查
+==Medium
+
+==High
+
+==Impossible
+
+
+
+==Low
+
+==Medium
+
+==High
+
+==Impossible
+
+
+
+==Low
+
+==Medium
+
+==High
+
+==Impossible
+
+
+
+==Low
+
+==Medium
+
+==High
+
+==Impossible
