@@ -37,7 +37,7 @@
 	檢查是否真有資料?
 ==Impossible
 	直到最後都是$_GET...?
-
+<a href="http://localhost/dvwa/vulnerabilities/csrf/?password_new=password&password_conf=password&Change=Change#">click me</a>
 
 ●File Inclusion
 ==Low
@@ -63,43 +63,134 @@
 	圖片re-encode去掉metadata
 	用rename取代move_uploaded_file
 ==Impossible
-
+	設定目錄執行權限
+	上傳到別的domain
 
 ●Insecure CAPTCHA
 ==Low
-	把recaptha的結果丟到下一階段檢查
+	把recaptha的結果丟到下一階段檢查(一樣可以被改)
 ==Medium
-
+	取消掉step12的做法
 ==High
-
+	if判斷g-recaptcha-response & HTTP_USER_AGENT 的部分挺多餘的
+	驗token
+	stripslashes, prepare, bindparam
 ==Impossible
+心得: mysql_escape_string並不安全
+	user-agent可以改
 
 
-
+●SQL Injection
 ==Low
-
+	$_REQUEST => $_POST
+	mysqli_real_escape_string
 ==Medium
-
+	把query裡的值包在''裡(沒用，除非跟escape一起)
+	但也可能用字元轉換攻擊
 ==High
-
+	驗token
+	驗input格式
+	prepare, bind
 ==Impossible
+	addslashes可以用0xbf27攻擊
+	mysql_real_escape比mysql_escape安全，會根據編碼比較字串。
+	綁定參數很有用必用。
+
+●SQL Injection (Blind)
+同上
 
 
-
+●Weak Session IDs
 ==Low
-
+	改用時間設cookie
 ==Medium
-
+	用md5設cookie
+	設cookie有效路徑、過期時間、domain
 ==High
-
+	用sha1(隨機數,時間,自訂字串)
+	setcookie加上secure, httponly選項
 ==Impossible
 
-
-
+●XSS (DOM)
 ==Low
+	從參數濾掉script(但可以img)，沒防自訂參數
+==Medium
+	用switch case白名單，沒防自訂參數
+==High
+	不要decodeURI就好了
+	或是過濾敏感字元<>'"&
+==Impossible
+	用htmlspecialchars也有幫助
 
+●XSS (Reflected)
+==Low
+	str_replace'<script>'，沒防大寫或複雜字串。
+==Medium
+	用preg_replace，沒防img
+==High
+	驗token
+	htmlspecialchars
+==Impossible
+	X-XSS-Protection(非所有瀏覽器都支援)
+	unsafe-inline
+
+XSS (Stored)
+==Low
+	strip_tags
+	htmlspecialchars
+==Medium
+	用preg_replace，沒防img
+==High
+	驗token
+==Impossible
+	stripslashes看起來沒必要???
+
+CSP Bypass
+==Low
+	X-XSS-Protection: 0(不好)
+	unsafe-inline(不好)
+	nonce可以偽造
+	chrome會幫擋，不知其他瀏覽器怎樣。
 ==Medium
 
 ==High
 
 ==Impossible
+	可以利用callback注入
+	善用httponly防止偷cookie
+
+●JavaScript
+敏感資訊、驗證用資訊，不要client side render。
+===
+===
+===
+結論:
+	SQL部分:
+		sql語法不應插入任何變數，用prepare/bind_param/execute來做
+		，並且檢查輸入格式(is_int, is_numeric, preg_match之類的)
+		，這樣做能防SQL injection，可是還是要防stored XSS
+		，看是要統一input還output的部分做htmlspecialchars。
+		(mysql_escape_string與addslashes都有破綻)
+
+	PHP部分:
+		用等待時間與次數限制防禦brute force。
+
+		避免讓使用者輸入內容的command(shell_exec)與include，如果需要，
+		input過濾敏感字元(&;|-$()`..\/)、檢查輸入格式、列白名單(switch case)
+
+		設定allow_url_include & allow_url_fopen = Off
+
+	header, cookie部分:
+		session id越長越亂越難猜越好，敏感資訊cookie都要secure, httponly
+		要POST資料，或是敏感操作，最好都有csrf_token。
+
+		檢查user-agent, content-type並不安全，可以被改，
+		檢查其它資料(如referer)不要片段比對(strpos,stripos,preg_match等)
+	
+		csp不要用unsafe-inline，可考慮設X-XSS-Protection: 1(非所有瀏覽器都支援)
+		，限制xxx-src會有幫助，但是來源不能有自訂內容的部分。
+
+	client, js部分:
+		js取user input或是url時，不decode就沒事，並且要過濾字元(<>'"&)，驗型態/長度/格式。
+		JSONP的參數不應直接放在JS中(如callback)，且要驗格式/過濾等等
+		，php動態產生的JSONP/js要過濾敏感字元、檢查輸入格式、或列白名單
