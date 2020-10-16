@@ -38,6 +38,7 @@
 ==Impossible
 	直到最後都是$_GET...?
 <a href="http://localhost/dvwa/vulnerabilities/csrf/?password_new=password&password_conf=password&Change=Change#">click me</a>
+	chrome會在cross origin時修剪referer，IE則不會。(Referrer-Policy)
 
 ●File Inclusion
 ==Low
@@ -177,6 +178,9 @@ CSP Bypass
 
 		避免讓使用者輸入內容的command(shell_exec)與include，如果需要，
 		input過濾敏感字元(&;|-$()`..\/)、檢查輸入格式、列白名單(switch case)
+
+		處理檔案時，content-type和副檔名都要驗，設好儲存目錄下檔案的執行權限，限制檔案大小
+		，儲存名稱轉換、設難猜一點，圖片可以rerender去掉多餘部分，不確定其它檔案類型可不可。
 
 		設定allow_url_include & allow_url_fopen = Off
 
