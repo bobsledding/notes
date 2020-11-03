@@ -198,3 +198,7 @@ CSP Bypass
 		js取user input或是url時，不decode就沒事，並且要過濾字元(<>'"&)，驗型態/長度/格式。
 		JSONP的參數不應直接放在JS中(如callback)，且要驗格式/過濾等等
 		，php動態產生的JSONP/js要過濾敏感字元、檢查輸入格式、或列白名單
+
+	Don't trust anything from user!!!
+	Don't trust anything from user!!!
+	Don't trust anything from user!!!

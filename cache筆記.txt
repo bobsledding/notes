@@ -1,0 +1,27 @@
+Etag > Last-Modified > max-age > Expires
+建議一組Expires / Cache-Control: max-age 加上一組Etag / Last-Modified
+
+=== Cache-Control ===
+public: 大家都能cache。
+private: 只有browser能cache。
+no-cache: 同public，但絕對要驗證(Etag/Last-Modified)。
+no-store: 完全不cache。
+
+max-age=(秒): 幾秒後過期。
+s-maxage=(秒): 會覆蓋max-age 或 Expires，僅限shared caches(如proxy)。設private的話則忽略。
+max-stale
+min-fresh
+
+must-revalidate: Expires/max-age後一定要跟origin server驗證。
+proxy-revalidate: 同上但只適用於shared caches(如proxy)。設private的話則忽略。
+immutable: Expires/max-age內絕不驗證。
+
+no-transform: proxy或其他中介的東西絕不能改變response body, Content-Encoding, Content-Range,或Content-Type.
+only-if-cached: client離線存取用
+=====================
+正常情況:
+200(disk/memory cache):
+
+304(Etag/Last-Modified):
+
+200(新的):
