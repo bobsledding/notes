@@ -1,27 +1,41 @@
-Etag > Last-Modified > max-age > Expires
-建議一組Expires / Cache-Control: max-age 加上一組Etag / Last-Modified
-
 === Cache-Control ===
-public: 大家都能cache。
-private: 只有browser能cache。
-no-cache: 同public，但絕對要驗證(Etag/Last-Modified)。
-no-store: 完全不cache。
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
-max-age=(秒): 幾秒後過期。
-s-maxage=(秒): 會覆蓋max-age 或 Expires，僅限shared caches(如proxy)。設private的話則忽略。
-max-stale
-min-fresh
+=== 其它 ===
+Vary: 以指定header不同狀況分別cache
 
-must-revalidate: Expires/max-age後一定要跟origin server驗證。
-proxy-revalidate: 同上但只適用於shared caches(如proxy)。設private的話則忽略。
-immutable: Expires/max-age內絕不驗證。
-
-no-transform: proxy或其他中介的東西絕不能改變response body, Content-Encoding, Content-Range,或Content-Type.
-only-if-cached: client離線存取用
-=====================
-正常情況:
+=== 一般情境 ===
 200(disk/memory cache):
+	設定Expires或max-age、immutable，讓browser直接從local抓cache
 
 304(Etag/Last-Modified):
+	過了Expires或max-age之後，根據Etag/Last-Modified驗證If-None-Match/If-Modified-Since，
+	如果驗證OK，回應304。(或是有must-revalidate/no-cache時)
 
-200(新的):
+=== max-age:0 vs. no-cache vs. must-revalidate ===
+no-cache = max-age:0, must-revalidate
+no-cache與must-revalidate在server沒回應時不會使用cache
+
+=== 幾種用法 ===
+1.隱私內容: (如會員資料)
+	使用private來防止被proxy cache。
+
+2.公開常用內容: (如單品頁)
+	使用public來增加client從proxy取得cache的機會。
+
+3.不常變動的資源: (如css, js, image)
+	使用超長的max-age與immutable來增加client使用local cache的機會。
+	延伸:revved resource:
+		css,js變動時，以改檔名的方式(例如加上版本號)。
+		既能確保平時使用cache，又能確保改動立即發生。
+
+=== Apache cache ===
+mod_expires:控制Expires 以type設定不同Expires
+mod_cache:控制跟cache有關的header(https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html)
+socache:key/value cache
+mod_file_cache: file preload
+
+=== PHP cache ===
+Zend OPCache         APC?
+cache解析、編譯(直譯?)過的PHP
