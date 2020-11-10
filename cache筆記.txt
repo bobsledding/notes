@@ -31,11 +31,23 @@ no-cache與must-revalidate在server沒回應時不會使用cache
 		既能確保平時使用cache，又能確保改動立即發生。
 
 === Apache cache ===
+透過httpd.conf, virtual host, 或.htaccess
+
 mod_expires:控制Expires 以type設定不同Expires
 mod_cache:控制跟cache有關的header(https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html)
 socache:key/value cache
 mod_file_cache: file preload
+還可設定header進行更細節的操作
 
 === PHP cache ===
 Zend OPCache         APC?
 cache解析、編譯(直譯?)過的PHP
+
+=== 最高速設定 ===
+PHP: 開zend opcache、設定cache相關headers
+Apache: 依據資源需求設定cache相關headers
+browser: 利用<link rel=preload、prefetch、preconnect、dns-prefetch預載資源
+		還可以設定<script defer async
+
+server端也可以在header設定Link: rel=?
+HTTP/2有push
