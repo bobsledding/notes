@@ -2,7 +2,8 @@
 {
 	['NFS'];
 	_介紹 = {
-
+		'RPC',
+		'權限',
 	};
 	_為何要用;
 	_使用時機;
@@ -74,25 +75,52 @@
 		'滿時棄用最久未用',
 		'memcached本身不保證data存在',
 		'可開多台server給多個client用，也可獨自一台server+client',
+		'最好放在安全的網路中',
+		'多線程',
+		'掛了就G了',
+		'LRU',
 	};
 	_為何要用;
-	_使用時機; = {
+	_使用時機 = {
 		'大量請求 / 產生內容成本高',
-	}
-	_使用方法;
+		'簡單資料型別',
+	};
+	_使用方法 = {
+		'先從memcached取，若無則從DB取並存進memcached',
+		'更新DB成功後，從DB取，存進memcached',
+		'or 更新DB成功後，直接從memcached刪掉',
+		'可加隨機數/字串來讓一批key無效'
+	};
 },
 {
 	['Redis'];
 	_介紹 = {
-
+		'本質是DB，只是主要in-memory，可備份',
+		'可以設定備份、儲存',
+		'strings, Lists of strings, Sets of strings, Sorted sets of strings, Hash tables, HyperLogLogs(2.8.9), Stream(5.0), Geospatial data(3.2) 還有其它module可以用' ,
+		'RDB快照, journaling(AOF)',
+		'single-threaded(or double-threaded)',
+		'Clustering(3.0) 變成分散式而且可以備份',
+		'master-replica(slave)',
+		'WAIT',
+		'LRU',
+		'因為單thread所以要稍微考慮時間複雜度',
+		'slowlog',
+		'redis-benchmark',
 	};
 	_為何要用;
-	_使用時機;
+	_使用時機 = {
+		'資料持久化和資料同步',
+		'session caching, full page cache, message queue applications, leaderboards and counting among others.',
+	};
 	_使用方法;
 },
 {
 	['RabbitMQ'];
 	_介紹 = {
+		'Message Queue',
+		'AMQP (Advanced Message Queuing Protocol)',
+		'Application Intergration',
 
 	};
 	_為何要用;
