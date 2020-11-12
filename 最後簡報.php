@@ -2,16 +2,33 @@
 {
 	['NFS'];
 	_介紹 = {
-		'RPC',
-		'權限',
+		'用RPC來讓client對應到NFS各個port',
+		'也可以設定固定port',
+		'至少需要兩個 daemons ，一個管理用戶端是否能夠登入的問題(rpc.nfsd)， 一個管理用戶端能夠取得的權限(rpc.mountd)',
+		'rpc.lockd鎖定檔案，rpc.statd檢查檔案的一致性',
+		'UID,GID對應易混淆',
+		'可用NIS管理使用者',
+		'sync與async的差別好像很值得注意',
+		'autofs'
 	};
 	_為何要用;
 	_使用時機;
-	_使用方法;
+	_使用方法 = {
+		'先開RPC再開NFS',
+		'主要設定exports',
+		'用root_squash, all_squash, anonuid來管理權限 增加安全性',
+		'rpcbind start',
+		'showmount',
+		'mount -t nfs IP:remote_path local_path',
+		'unmount path',
+		'mount時加參數如nosuid, noexec, nodev, nouser',
+
+	};
 },
 {
 	['DNS'];
 	_介紹 = {
+		'UDP',
 		'domain name system',
 		'是一種服務也是一種協定',
 		'由特定軟體提供: 如BIND, DJBDNS',
@@ -121,18 +138,34 @@
 		'Message Queue',
 		'AMQP (Advanced Message Queuing Protocol)',
 		'Application Intergration',
+		'producer -> exchange -> queue -> consumer',
+		'direct: RouteKey = queue binding key',
+		'fanout: 不看key,輪流發',
+		'topic: 寬鬆版的direct',
+		'headers: 不看key,以header決定',
 
 	};
-	_為何要用;
+	_為何要用 = {
+		'decouple publisher & consumer',
+		'非同步',
+	};
 	_使用時機;
 	_使用方法;
 },
 {
 	['cdn'];
 	_介紹 = {
-
+		'把內容分散到許多位置',
 	};
-	_為何要用;
+	_為何要用 = {
+		'分散占用頻寬',
+		'異地備援',
+		'使用最近節點降低延遲與錯誤',
+		'瀏覽器會限制對單一主機的連線數',
+	};
 	_使用時機;
-	_使用方法;
+	_使用方法 = {
+		'花錢: 中華電信,cloudflare之類的',
+		'自己架: 讓dns server給client不同的cdn的IP',
+	};
 },
